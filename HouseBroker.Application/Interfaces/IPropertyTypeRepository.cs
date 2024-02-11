@@ -10,5 +10,6 @@ namespace HouseBroker.Application.Interfaces
     public interface IPropertyTypeRepository
     {
         List<PropertyType> GetAllPropertyTypes();
+
     }
 }

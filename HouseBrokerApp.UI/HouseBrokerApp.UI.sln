@@ -3,17 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseBrokerApp.UI", "HouseBrokerApp.UI.csproj", "{EE21C1A7-54EC-4061-87BA-10BD842432DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseBrokerApp.UI", "HouseBrokerApp.UI.csproj", "{EE21C1A7-54EC-4061-87BA-10BD842432DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseBroker.Domain", "..\HouseBroker.Domain\HouseBroker.Domain.csproj", "{81DD62D7-574A-4CBA-9BA3-8386364E32A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseBroker.Domain", "..\HouseBroker.Domain\HouseBroker.Domain.csproj", "{81DD62D7-574A-4CBA-9BA3-8386364E32A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseBroker.Infrastructure", "..\HouseBroker.Infrastructure\HouseBroker.Infrastructure.csproj", "{0BFBEFF8-A88F-46B0-88D1-E9DD615919B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseBroker.Infrastructure", "..\HouseBroker.Infrastructure\HouseBroker.Infrastructure.csproj", "{0BFBEFF8-A88F-46B0-88D1-E9DD615919B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseBroker.Application", "..\HouseBroker.Application\HouseBroker.Application.csproj", "{FBE5AC14-EB7E-4716-85FC-9F46A4CBEA9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HouseBroker.Application", "..\HouseBroker.Application\HouseBroker.Application.csproj", "{FBE5AC14-EB7E-4716-85FC-9F46A4CBEA9F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{91F920C3-F968-4977-B671-D9B86A800AAE}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		readme.md = readme.md
 	EndProjectSection
 EndProject
 Global

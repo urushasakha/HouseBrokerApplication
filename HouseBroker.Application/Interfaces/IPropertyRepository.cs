@@ -9,6 +9,14 @@ namespace HouseBroker.Application.Interfaces
 {
     public interface IPropertyRepository
     {
-        List<Property> GetAllPropertyNames();
+        List<Property> GetAllPropertyList();
+
+        Property GetPropertyById(int? id);
+
+        //int AddProperty(Property property);
+        int AddProperty(Property property);
+        int UpdateProperty(Property property);
+        int DeleteProperty(int id);
+
     }
 }
