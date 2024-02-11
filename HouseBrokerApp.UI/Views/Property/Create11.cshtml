@@ -1,0 +1,66 @@
+﻿@model HouseBroker.Domain.Entities.PropertyViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    var locationList = ViewBag.LocationList as SelectList;
+    var productTypeList = ViewBag.PropertyTypeList as SelectList;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>PropertyViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="PropertyTypeId" class="control-label"></label>
+               <select asp-for="PropertyTypeId" asp-items="@productTypeList" class="form-control">
+                    <option value="">Select Property Type</option>
+                </select>
+                <span asp-validation-for="PropertyTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationId" class="control-label"></label>
+                <select asp-for="LocationId" asp-items="@locationList" class="form-control">
+                    <option value="">Select Location</option>
+                </select>
+                <span asp-validation-for="LocationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Features" class="control-label"></label>
+                <input asp-for="Features" class="form-control" />
+                <span asp-validation-for="Features" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                @*<label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>*@
+                <div class="form-group">
+                    <label asp-for="Image"></label>
+                    <input asp-for="Image" type="file" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,127 @@
+﻿@using HouseBroker.Domain.Entities;
+@model IEnumerable<HouseBroker.Domain.Entities.Property>
+
+@{
+    ViewData["Title"] = "Index";
+    var locationList = ViewBag.LocationList as List<Location>;
+    var propertTypeList = ViewBag.PropertyTypeList as List<PropertyType>;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <h5>Property Listings</h5>
+
+        <p>
+            <a class="btn btn-primary" asp-action="Create">Create New</a>
+        </p>
+
+        @using (Html.BeginForm("Index", "Property", FormMethod.Get))
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="propertyType">Property Type:</label>
+                    <select class="form-control" name="propertyTypeId" id="propertyType">
+                        <option value="">All</option>
+                        @foreach (var propertyType in propertTypeList)
+                        {
+                            <option value="@propertyType.Id">@propertyType.PropertyTypeName</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="location">Location:</label>
+                    <select class="form-control" name="locationId" id="location">
+                        <option value="">All</option>
+                        @foreach (var location in locationList)
+                        {
+                            <option value="@location.LocationId">@location.LocationName</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-2 mt-4">
+                    <button type="submit" class="btn btn-success">Search</button>
+                </div>
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <span style="color:red">@TempData["ErrorMessage"]</span>
+        }
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PropertyTypeId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LocationId)
+
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Features)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Image)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+
+                            @*   @Html.DisplayFor(modelItem => item.PropertyTypeId)*@
+                            @propertTypeList.Where(i=>i.Id==item.PropertyTypeId).FirstOrDefault().PropertyTypeName
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.LocationId)*@
+                            @locationList.Where(i=>i.LocationId==item.LocationId).FirstOrDefault().LocationName
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Features)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Image)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+                            <button onclick="location.href='@Url.Action("Edit", "Property", new { id = item.Id })'">Edit</button> |
+                            @* @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                            <form asp-action="Delete" method="post" asp-route-id="@item.Id">
+                                <button>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
+
+

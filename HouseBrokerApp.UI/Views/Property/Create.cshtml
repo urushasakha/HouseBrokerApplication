@@ -1,0 +1,111 @@
+﻿@model HouseBroker.Domain.Entities.Property
+
+@{
+    ViewData["Title"] = "Create";
+    var locationList = ViewBag.LocationList as SelectList;
+    var productTypeList = ViewBag.PropertyTypeList as SelectList;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h4>Add New Property</h4>
+        <hr />
+        <div class="row">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    @* <label asp-for="PropertyTypeId" class="control-label"></label>
+                    <input asp-for="PropertyTypeId" class="form-control" />
+                    <span asp-validation-for="PropertyTypeId" class="text-danger"></span>*@
+                    <label asp-for="PropertyTypeId" class="control-label">Property Type</label>
+                    @*<select asp-for="PropertyTypeId" asp-items="@(ViewBag.PropertyTypeList)" class="form-control">
+                    <option value="">Select Property Type</option>
+                    </select>*@
+                    <select asp-for="PropertyTypeId" asp-items="@productTypeList" class="form-control">
+                        <option value="">Select Property Type</option>
+                    </select>
+                    <span asp-validation-for="PropertyTypeId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LocationId" class="control-label"></label>
+                    @* <input asp-for="LocationId" class="form-control" />*@
+                    @*<select asp-for="LocationId" asp-items="@(new SelectList(ViewBag.LocationList, "LocationId", "LocationId"))" class="form-control">
+                    <option value="">Select Location</option>
+                    </select>*@
+                    <select asp-for="LocationId" asp-items="@locationList" class="form-control">
+                        <option value="">Select Location</option>
+                    </select>
+                    <span asp-validation-for="LocationId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Features" class="control-label"></label>
+                    <input asp-for="Features" class="form-control" />
+                    <span asp-validation-for="Features" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @*<label asp-for="Image" class="control-label"></label>
+                    <input asp-for="Image" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>*@
+                    <div class="form-group">
+                        <label asp-for="Image"></label>
+                        <input asp-for="Image" type="file" class="form-control" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+
+            <script type="text/javascript">
+
+                function previewImage(event) {
+                    debugger;
+
+                    var fileInput = event.target;
+                    const imgContainer = document.getElementById('imgPreview');
+                    if (fileInput.files && fileInput.files[0]) {
+
+                        var reader = new FileReader();
+
+                        reader.onload = function (_evnt) {
+                            imgContainer.src = _evnt.target.result;
+                            imgContainer.style.display = 'block';
+                        }
+                        reader.readAsDataURL(fileInput.files[0])
+                    } else {
+                        imgContainer.src = '';
+                        imgContainer.style.display = 'none';
+                    }
+                }
+            </script>
+        }
+
+    </div>
+</body>
+</html>
+
